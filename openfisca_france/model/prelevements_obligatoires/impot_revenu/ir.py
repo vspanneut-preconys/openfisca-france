@@ -5,7 +5,7 @@ from __future__ import division
 
 import logging
 
-from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round as round_
+from numpy import datetime64, logical_and as and_, logical_or as or_, logical_xor as xor_, round as round_, tile, dot, hstack,inf
 
 from openfisca_core import periods
 from openfisca_france.model.base import *  # noqa analysis:ignore
@@ -1198,6 +1198,24 @@ class decote_gain_fiscal(Variable):
         ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
 
         return min_(decote, ir_plaf_qf)
+
+class taux_marginal_imposition(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Taux marginal d'imposition"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        bareme = parameters(period).impot_revenu.bareme
+        nbptr = foyer_fiscal('nbptr', period)
+        rni = foyer_fiscal('rni', period)
+        base = max_(0, rni / nbptr)
+        base_matrix = tile(base, (len(bareme.thresholds), 1)).T
+        thresholds_matrix = tile(hstack((bareme.thresholds, inf)), (len(base), 1))
+        above_bareme=base_matrix >= thresholds_matrix[:, :-1]
+        under_next_bareme=base_matrix < thresholds_matrix[:, 1:]
+        tranche_matrix=above_bareme*under_next_bareme
+        return dot(tranche_matrix, bareme.rates)
 
 class reduction_sous_condition_revenu(Variable):
     value_type = float
