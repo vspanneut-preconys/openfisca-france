@@ -1,0 +1,6 @@
+reference: ipp
+unit: currency
+description: Majoration des seuils par demi-part excédant 1 (personne célibataire, veuve ou divorcée) ou 2 (couple) part(s)
+values:
+  2016-01-01:
+    value: 3700.0

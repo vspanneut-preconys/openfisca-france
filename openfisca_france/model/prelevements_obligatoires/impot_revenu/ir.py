@@ -1199,6 +1199,53 @@ class decote_gain_fiscal(Variable):
 
         return min_(decote, ir_plaf_qf)
 
+class reduction_sous_condition_revenu(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Réduction d'impôt sous condition de revenu"
+    reference = "http://bofip.impots.gouv.fr/bofip/2495-PGP.html"
+    definition_period = YEAR
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        impot_apres_decote = foyer_fiscal('impot_apres_decote', period)
+        nb_adult = foyer_fiscal('nb_adult', period)
+        nbptr = foyer_fiscal('nbptr', period)
+        rfr = foyer_fiscal('rfr', period)
+        majoration_par_demi_part = parameters(period).impot_revenu.reduction_sous_condition_revenu.majoration_par_demi_part
+        seuil_max = parameters(period).impot_revenu.reduction_sous_condition_revenu.seuil_max
+        seuil_plein = parameters(period).impot_revenu.reduction_sous_condition_revenu.seuil_plein
+        taux = parameters(period).impot_revenu.reduction_sous_condition_revenu.taux
+
+        major_demi_part_sup = (nbptr - nb_adult)* 2.0 * majoration_par_demi_part
+        seuil_plein_majore = seuil_plein * nb_adult + major_demi_part_sup
+        seuil_max_majore = seuil_max * nb_adult + major_demi_part_sup
+
+        sous_seuil_plein = (rfr <= seuil_plein_majore)
+        sous_seuil_max_num = (rfr > seuil_plein_majore) * (rfr <= seuil_max_majore) * (seuil_max_majore-rfr)
+        sous_seuil_max_denom = nb_adult * (seuil_max - seuil_plein)
+        sous_seuil_max = sous_seuil_max_num / sous_seuil_max_denom
+        taux_eff = taux*(sous_seuil_plein + sous_seuil_max)
+        return taux_eff * impot_apres_decote
+
+
+
+class impot_apres_decote(Variable):
+    value_type = float
+    entity = FoyerFiscal
+    label = u"Impôt après déduction de la décote"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        '''
+        irpp après après déduction de la décote
+        '''
+        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
+        cncn_info_i = foyer_fiscal.members('cncn_info', period)
+        decote = foyer_fiscal('decote', period)
+        taux = parameters(period).impot_revenu.rpns.taux16
+
+        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote)
+
 
 class nat_imp(Variable):
     value_type = bool
@@ -1222,19 +1269,24 @@ class nat_imp(Variable):
 class ip_net(Variable):
     value_type = float
     entity = FoyerFiscal
-    label = u"Impôt sur le revenu après décote"
+    label = u"Impôt sur le revenu après diminution de l'impôt"
     definition_period = YEAR
 
     def formula(foyer_fiscal, period, parameters):
         '''
-        irpp après décote
+        irpp après diminution de l'impôt jusqu'au 2015-12-31 (décote)
         '''
-        ir_plaf_qf = foyer_fiscal('ir_plaf_qf', period)
-        cncn_info_i = foyer_fiscal.members('cncn_info', period)
-        decote = foyer_fiscal('decote', period)
-        taux = parameters(period).impot_revenu.rpns.taux16
+        impot_apres_decote = foyer_fiscal('impot_apres_decote', period)
+        return impot_apres_decote
 
-        return max_(0, ir_plaf_qf + foyer_fiscal.sum(cncn_info_i) * taux - decote)
+    def formula_2016(foyer_fiscal, period, parameters):
+        '''
+        irpp après diminution de l'impôt (décote et réduction sous condition de revenu)
+        '''
+        impot_apres_decote = foyer_fiscal('impot_apres_decote', period)
+        reduction_sous_condition_revenu = foyer_fiscal('reduction_sous_condition_revenu', period)
+
+        return max_(0, impot_apres_decote - reduction_sous_condition_revenu)
 
 
 class iaidrdi(Variable):

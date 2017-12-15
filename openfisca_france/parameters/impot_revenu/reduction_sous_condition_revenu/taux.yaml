@@ -1,0 +1,6 @@
+reference: ipp
+unit: /1
+description: Taux de la réduction d'impôt sous condition de revenu (appliqué pleinement ou entre le seuil plein et le seuil maximal).
+values:
+  2016-01-01:
+    value: 0.20
