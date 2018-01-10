@@ -16,21 +16,60 @@ class f2da(Variable):
     definition_period = YEAR
     # à vérifier sur la nouvelle déclaration des revenus 2013
 
-
-class f2dh(Variable):
-    cerfa_field = u"2DH"
+class f2dh_pre_ref(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %"
+    label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %, versements avant le 27/09/2017"
     definition_period = YEAR
 
-class f2ee(Variable):
-    cerfa_field = u"2EE"
+class f2dh_post_ref_m150k(Variable):
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
-    label = u"Autres produits de placement soumis aux prélèvements libératoires"
+    label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 7.5 %, versements après le 27/09/2017 de moins de 150k"
+    definition_period = YEAR
+
+class f2dh_post_ref_p150k(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits d’assurance-vie et de capitalisation soumis au prélèvement libératoire de 12.5 %, versements après le 27/09/2017 de moins de 150k"
+    definition_period = YEAR
+
+class f2ee_av_p4_pre(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits d’assurance-vie et de capitalisation entre 4 et 8 ans, versements avant le 27/09/2017"
+    definition_period = YEAR
+
+class f2ee_av_p4_post(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits d’assurance-vie et de capitalisation entre 4 et 8 ans, versements après le 27/09/2017"
+    definition_period = YEAR
+
+class f2ee_av_m4_pre(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits d’assurance-vie et de capitalisation de moins de 4 ans, versements avant le 27/09/2017"
+    definition_period = YEAR
+
+class f2ee_av_m4_post(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits d’assurance-vie et de capitalisation de moins de 4 ans, versements après le 27/09/2017"
+    definition_period = YEAR
+
+class f2ee_autres(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Autres produits de placement soumis aux prélèvements libératoires de 24 %"
     definition_period = YEAR
 
 # revenus des valeurs et capitaux mobiliers ouvrant droit à abattement

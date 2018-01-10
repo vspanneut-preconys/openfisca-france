@@ -1262,7 +1262,6 @@ class prlire(Variable):
         plaf_resid = max_(_P.impot_revenu.rvcm.abat_assvie * (1 + maries_ou_pacses) - f2ch, 0)
         return _P.impot_revenu.credits_impot.prlire.taux * min_(f2dh, plaf_resid)
 
-
 class quaenv(Variable):
     value_type = float
     entity = FoyerFiscal

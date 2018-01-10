@@ -1961,7 +1961,6 @@ class imp_lib(Variable):
     label = u"Prelèvement libératoire sur les revenus du capital"
     reference = "http://www.impots.gouv.fr/portal/dgi/public/particuliers.impot?pageId=part_ctrb_soc&paf_dm=popup&paf_gm=content&typePage=cpr02&sfid=501&espId=1&impot=CS"
     definition_period = YEAR
-    end = '2012-12-31'
 
     def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
@@ -1988,6 +1987,18 @@ class imp_lib(Variable):
 
         out = -(prelevement_liberatoire.action * f2da + prelevement_liberatoire.autre * f2ee) * not_(finpfl) \
             - prelevement_liberatoire.assvie * f2dh
+        return out
+
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
+        '''
+        Prelèvement libératoire sur les revenus du capital
+        '''
+        f2dh = foyer_fiscal('f2dh', period)
+        f2ee = foyer_fiscal('f2ee', period)
+        _P = parameters(period)
+        finpfl = parameters(period).impot_revenu.autre.finpfl
+        prelevement_liberatoire = parameters(period).impot_revenu.rvcm.prelevement_liberatoire
+        out = - (prelevement_liberatoire.autre * f2ee) * not_(finpfl) - prelevement_liberatoire.assvie * f2dh
         return out
 
 
@@ -3126,3 +3137,35 @@ class ppe(Variable):
         #   Dans les agrégats officiels de la DGFP, c'est à la PPE brute qu'il faut comparer
         ppe = max_(ppe_brute - rsa_act, 0)
         return ppe
+
+
+class f2dh(Variable):
+    cerfa_field = u"2DH"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Produits d’assurance-vie et de capitalisation de plus de 8 ans soumis au prélèvement libératoire"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        f2dh_pre_ref = foyer_fiscal('f2dh_pre_ref', period)
+        f2dh_post_ref_m150k = foyer_fiscal('f2dh_post_ref_m150k', period)
+        f2dh_post_ref_p150k = foyer_fiscal('f2dh_post_ref_p150k', period)
+        return f2dh_pre_ref + f2dh_post_ref_m150k + f2dh_post_ref_p150k
+
+class f2ee(Variable):
+    cerfa_field = u"2EE"
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Autres produits de placement soumis aux prélèvements libératoires"
+    definition_period = YEAR
+
+    def formula(foyer_fiscal, period, parameters):
+        f2ee_av_p4_pre = foyer_fiscal('f2ee_av_p4_pre', period)
+        f2ee_av_p4_post = foyer_fiscal('f2ee_av_p4_post', period)
+        f2ee_av_m4_pre = foyer_fiscal('f2ee_av_m4_pre', period)
+        f2ee_av_m4_post = foyer_fiscal('f2ee_av_m4_post', period)
+        f2ee_autres = foyer_fiscal('f2ee_autres', period)
+
+        return f2ee_av_p4_pre + f2ee_av_p4_post + f2ee_av_m4_pre + f2ee_av_m4_post + f2ee_autres
