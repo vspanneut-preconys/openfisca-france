@@ -746,6 +746,7 @@ class creimp(Variable):
         f8uz = foyer_fiscal('f8uz', period)
         f8wa = foyer_fiscal('f8wa', period)
         f8wb = foyer_fiscal('f8wb', period)
+        f8wc = foyer_fiscal('f8wc', period)
         f8wd = foyer_fiscal('f8wd', period)
         f8we = foyer_fiscal('f8we', period)
         f8wr = foyer_fiscal('f8wr', period)
@@ -754,7 +755,7 @@ class creimp(Variable):
         f8wv = foyer_fiscal('f8wv', period)
 
         return (f2ab + f8ta + f8tb + f8tc +f8te - f8tf + f8tg + f8th + f8to - f8tp + f8ts + f8tz + f8uz + f8wa + f8wb +
-                f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
+                f8wc + f8wd + f8we + f8wr + f8wt + f8wu + f8wv)
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
         f2ab = foyer_fiscal('f2ab', period)
@@ -784,6 +785,38 @@ class creimp(Variable):
 
         return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
                 f8uz + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
+
+    def formula_2016_01_01(foyer_fiscal, period, parameters):
+        f2ab = foyer_fiscal('f2ab', period)
+        f2ck = foyer_fiscal('f2ck', period)
+        f8ta = foyer_fiscal('f8ta', period)
+        f8tb = foyer_fiscal('f8tb', period)
+        f8tc = foyer_fiscal('f8tc', period)
+        f8te = foyer_fiscal('f8te', period)
+        f8tf = foyer_fiscal('f8tf', period)
+        f8tg = foyer_fiscal('f8tg', period)
+        f8th = foyer_fiscal('f8th', period)
+        f8tl = foyer_fiscal('f8tl', period)
+        f8to = foyer_fiscal('f8to', period)
+        f8tp = foyer_fiscal('f8tp', period)
+        f8ts = foyer_fiscal('f8ts', period)
+        f8tz = foyer_fiscal('f8tz', period)
+        f8uw = foyer_fiscal('f8uw', period)
+        f8uz = foyer_fiscal('f8uz', period)
+        f8wa = foyer_fiscal('f8wa', period)
+        f8wb = foyer_fiscal('f8wb', period)
+        f8wc = foyer_fiscal('f8wc', period)
+        f8wd = foyer_fiscal('f8wd', period)
+        f8we = foyer_fiscal('f8we', period)
+        f8wr = foyer_fiscal('f8wr', period)
+        f8wt = foyer_fiscal('f8wt', period)
+        f8wu = foyer_fiscal('f8wu', period)
+
+        f8vm_i = foyer_fiscal.members('f8vm', period)
+        f8vm = foyer_fiscal.sum(f8vm_i)
+
+        return (f2ab + f2ck + f8ta + f8tb + f8tc + f8te - f8tf + f8tg + f8th + f8to - f8tp + f8tl + f8ts + f8tz + f8uw +
+                f8uz + f8vm + f8wa + f8wb + f8wc + f8wd + f8we + f8wr + f8wt + f8wu)
   
     # TODO : add tax credit 8VM and 8VL (2016) 
     # TODO: add tax credit 8TK for all years ?
@@ -1859,7 +1892,7 @@ class quaenv_bouquet(Variable):
         t4 = or_(f7sn > 0, f7so > 0)
         t5 = or_(f7sr > 0, f7ss > 0)
         t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (f7wh == 1)  # * = and
         return bouquet
 
     def formula_2013_01_01(foyer_fiscal, period, parameters):
@@ -1887,7 +1920,7 @@ class quaenv_bouquet(Variable):
         t4 = or_(f7sn > 0, f7so > 0)
         t5 = or_(f7sr > 0, f7ss > 0)
         t6 = or_(or_(or_(f7st > 0, f7sp > 0), or_(f7sq > 0, f7sd > 0)), f7se > 0)
-        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1 and f7wh == 1)
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (f7wh == 1)
         return bouquet
 
     def formula_2014_01_01(foyer_fiscal, period, parameters):
@@ -1936,7 +1969,7 @@ class quaenv_bouquet(Variable):
         t5 = (f7sr + f7rr + f7ss + f7rs > 0)*1
         t6 = (f7sd + f7sa + f7se + f7sb + f7sp + f7rp + f7sq + f7rq + f7st + f7rt > 0)*1
        
-        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6 > 1) & (depense_2014_eligible > 0))
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (depense_2014_eligible > 0)
         return bouquet
 
     def formula_2015_01_01(foyer_fiscal, period, parameters):
@@ -2003,7 +2036,7 @@ class quaenv_bouquet(Variable):
              f7sq + f7rq + f7tq +
              f7st + f7rt + f7tt > 0)*1
 
-        bouquet = ((t1 + t2 + t3 + t4 + t5 + t6 > 1) & (depense_2014_eligible > 0) & (depense_2015_eligible > 0))
+        bouquet = (t1 + t2 + t3 + t4 + t5 + t6 > 1) * (depense_2014_eligible > 0) * (depense_2015_eligible > 0)
         return bouquet
 
 class saldom2(Variable):

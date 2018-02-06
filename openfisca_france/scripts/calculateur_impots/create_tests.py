@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" Launch an automatic battery of tests of the income tax legislation in OpenFisca for a given tax year. """
+""" Create an automatic battery of tests of the income tax legislation in OpenFisca for given tax years """
 
 
 import logging
@@ -20,11 +20,14 @@ from openfisca_france.scripts.calculateur_impots import (
     )
 
 log = logging.getLogger(__name__)
+rebuild_option = True
+years = range(2011, 2017)
 
 
-
-calculateur_impots_path =  os.path.join(pkg_resources.get_distribution('OpenFisca-France').location,
-    'tests', 'calculateur_impots')
+calculateur_impots_path = os.path.join(
+    pkg_resources.get_distribution('OpenFisca-France').location,
+    'tests', 'calculateur_impots'
+    )
 scenarios_to_test_directory = os.path.join(calculateur_impots_path, 'scenarios')
 output_json_directory = os.path.join(calculateur_impots_path, 'json')
 output_yaml_directory = os.path.join(calculateur_impots_path, 'yaml')
@@ -36,8 +39,7 @@ if not os.path.exists(os.path.join(scenarios_to_test_directory)):
 if not os.listdir(os.path.join(scenarios_to_test_directory)):
     log.info("Directory {} is empty".format(scenarios_to_test_directory))
     log.info("Creating new scenarios to test...")
-    create_all_scenarios_to_test(scenarios_to_test_directory)
-
+    create_all_scenarios_to_test(scenarios_to_test_directory, years)
 if not os.path.exists(os.path.join(output_json_directory)):
     log.info("Directory {} does not exist".format(output_json_directory))
     log.info("Creating the directory...")
@@ -47,8 +49,6 @@ if not os.path.exists(os.path.join(output_yaml_directory)):
     log.info("Creating the directory...")
     os.makedirs(os.path.join(output_yaml_directory))
 
-
-rebuild_option = False
 
 for filename in sorted(os.listdir(scenarios_to_test_directory)):
 
@@ -75,8 +75,9 @@ for filename in sorted(os.listdir(scenarios_to_test_directory)):
             tested = False, 
             rebuild_json = rebuild_option
             )
-        step2.json_to_yaml(
-            json_dir = output_json_directory, 
-            json_filename = json_filename + '.json', 
-            var = variable_to_test, 
-            output_dir = output_yaml_directory)
+        if json_filename != None :
+            step2.json_to_yaml(
+                json_dir = output_json_directory, 
+                json_filename = json_filename + '.json', 
+                var = variable_to_test, 
+                output_dir = output_yaml_directory)

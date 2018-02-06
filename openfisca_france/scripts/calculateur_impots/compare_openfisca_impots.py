@@ -30,7 +30,7 @@ from openfisca_france.scripts.calculateur_impots.base import (
 app_name = os.path.splitext(os.path.basename(__file__))[0]
 log = logging.getLogger(app_name)
 tax_benefit_system = openfisca_france.FranceTaxBenefitSystem()
-tax_benefit_system.neutralize_variable('rpns_individu') # TODO: recheck this, for year before 2014 it doesn't work and the program stop due to rpns_individu
+#tax_benefit_system.neutralize_variable('rpns_individu') # TODO: recheck this, for year before 2014 it doesn't work and the program stop due to rpns_individu
 
 
 def compare(scenario, tested = False, verbose = False):
@@ -138,46 +138,43 @@ def define_scenario(year, tax_benefit_system = tax_benefit_system):
         period = year,
         parent1 = dict(
             activite = u'Actif occupé',
-            date_naissance = 1973,
-            salaire_imposable = 20000,
-            retraite_imposable = 0,
-            chomage_imposable = 0,
-            abic_impn = 0,
-            #f8vm = 1200,
-            statut_marital = u'Marié',
+            date_naissance = 1970,
+            salaire_imposable = 50000,
+            #retraite_imposable = 0,
+            #chomage_imposable = 0,
+            #nbic_mvct = 20000,
+            #mbnc_mvct = 10000,
+            # f6ss = 200,
+            # f6ps = 200,
+            statut_marital = u'Célibataire',
             ),
-        parent2 = dict(
-             activite = u'Actif occupé',
-             date_naissance = 1973,
-             salaire_imposable = 25000,
-             statut_marital = u'Marié',
-             ),
-        enfants = [
-            dict(
-                 activite = u'Étudiant, élève',
-                 date_naissance = '1993-02-01',
-                 ),
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '2000-04-17',
-                ),
-            dict(
-                 activite = u'Étudiant, élève',
-                 date_naissance = '1997-02-01',
-                 ),
-            dict(
-                activite = u'Étudiant, élève',
-                date_naissance = '2000-04-17',
-                ),
-           ],
-        foyer_fiscal = dict( 
-            #f7qu = 20000,
-            #f7dd = 0,
-            #f7dl = 0,
-            #f7dq = 0, 
-            #f7dg = 0,
-            #f7su = 5000,
-            #f7vt = 2000,
+        # parent2 = dict(
+        #      activite = u'Actif occupé',
+        #      date_naissance = 1973,
+        #      salaire_imposable = 15000,
+        #      statut_marital = u'Marié',
+        #      ),
+        # enfants = [
+        #     dict(
+        #          activite = u'Étudiant, élève',
+        #          date_naissance = '1993-02-01',
+        #          ),
+        #     dict(
+        #         activite = u'Étudiant, élève',
+        #         date_naissance = '2000-04-17',
+        #         ),
+        #      ],
+        foyer_fiscal = dict(
+            f8ta = 20000,
+            #f6ps = 10000,
+            # f2ch = 100,
+            # f2dc = 500,
+            # f2fu = 1000,
+            # f2go = 1000,
+            # f2tr = 5000,
+            # f2ts = 9000,
+            # f2ab = 10000,
+            #f8vm = 10000,
             ),
         )
     scenario.suggest()
@@ -190,7 +187,7 @@ def main():
     args = parser.parse_args()
     logging.basicConfig(level = logging.DEBUG if args.verbose else logging.WARNING, stream = sys.stdout)
 
-    year = 2016
+    year = 2013
     scenario = define_scenario(year)
     compare(scenario, tested = True, verbose = True)
     return 0

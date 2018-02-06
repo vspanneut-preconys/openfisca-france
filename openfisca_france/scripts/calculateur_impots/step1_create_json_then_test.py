@@ -51,9 +51,7 @@ def create_json(scenario, directory, var = "", tested = False, rebuild_json = Fa
     json_scenario = scenario.to_json()
     string_scenario = json.dumps(json_scenario, encoding='utf-8', ensure_ascii=False, indent=2, sort_keys=True)
     json_filename = var + '-' + str(scenario.period.date.year) + '-' + hashlib.sha256(string_scenario).hexdigest()
-    # Le fichier de sortie est nommé :
-    # [variable éventuelle]-[année du scénario (sauf pour .json créés avant 05/14)]-[Hash du scenario]
-
+    
     if not (os.path.isfile(os.path.join(directory, json_filename + '.json'))):
         with codecs.open(os.path.join(directory, json_filename + '.json'), 'w', encoding = 'utf-8') as fichier:
             json.dump(add_official(scenario, tested), fichier, encoding = 'utf-8', ensure_ascii = False, indent = 2,
@@ -68,4 +66,9 @@ def create_json(scenario, directory, var = "", tested = False, rebuild_json = Fa
         log.info("The JSON file {} already exists and was not modified".format(json_filename))
         compare(scenario, tested, verbose = True)
     
+    if add_official(scenario, tested)['resultat_officiel'] == {}:
+        os.remove(os.path.join(directory, json_filename + '.json'))
+        log.info("No outputs found in the JSON file {} : the file was deleted".format(json_filename))
+        return None
+
     return json_filename

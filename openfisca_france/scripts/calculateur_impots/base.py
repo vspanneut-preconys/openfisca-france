@@ -26,20 +26,23 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     BCSG = None,
     BPRS = None,
     BRDS = None,
-    CIADCRE = None,
+    CIADCRE = None, #saldom2
     CICA = None,
     CICORSE = None,
-    CIDEPENV = None,
-    CIDEVDUR = None,
-    CIGARD = None,
+    CICULTUR = None, #accult
+    CIDEPENV = None, #quaenv
+    CIDEVDUR = None, #quaenv
+    CIGARD = u'ci_garext',
     CIGE = None,
-    CIHABPRIN = None,
+    CIHABPRIN = u'inthab',
+    CILOYIMP = u'assloy',
     CIMOBIL = None,
     CIPERT = None,
-    CIPRETUD = None,
+    CIPRETUD = u'preetu',
     CIRCM = None,
     CIRELANCE = None,
-    CITEC = None,
+    CITEC = u'aidper',
+    DIMMENAG = u'reduction_ss_condition_revenus',
     I2DH = None,
     IAVF2 = None,
     IAVIM = u'iai',
@@ -65,7 +68,7 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     PPETOT = u'ppe',
     RAA = None,
     RAH = None,
-    RAIDE = None,
+    RAIDE = None, #saldom
     RCEL = None,
     RCEL2012 = None,
     RCELCOM = None,
@@ -118,26 +121,27 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RCELRREDLS = None,
     RCELRREDLZ = None,
     RCELRREDMG = None,
-    RCINE = None,
+    RCINE = u'sofica',
     RCODELOP = None,
     RCODJT = None,
     RCODJU = None,
     RCODJV = None,
     RCODJW = None,
     RCODJX = None,
-    RCOLENT = None,
+    RCOLENT = u'doment',
+    RCOMP = u'adhcga',
     RCONS = None,
     RCOTFOR = None,
-    RDIFAGRI = None,
+    RDIFAGRI = u'intagr',
     RDONS = None,
     RDUFLOGIH = None,
     REI = None,
     REVKIRE = u'rfr',
     RFCPI = None,
     RFIPC = None,
-    RFOR = None,
-    RFORET = None,
-    RHEBE = None,
+    RFOR = u'invfor',
+    RFORET = u'deffor',
+    RHEBE = u'daepad',
     RIDOMENT = None,
     RIDOMPROE1 = None,
     RIDOMPROE2 = None,
@@ -155,17 +159,17 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RILMJV = None,
     RILMJW = None,
     RILMJX = None,
-    RINNO = None,
+    RINNO = None, #spfcpi
     RINVDOMTOMLG = None,
     RINVRED = None,
     RLOCIDEFG = None,
-    RLOGDOM = None,
+    RLOGDOM = u'domlog',
     RMEUBLE = None,
     RNI = None,
     RNICOL = u'rni',
-    RNOUV = None,
-    RPATNAT = None,
-    RPATNATOT = None,
+    RNOUV = u'cappme',
+    RPATNAT = u'patnat',
+    RPATNATOT = u'patnat',
     RPECHE = None,
     RPRESCOMPREP = None,
     RPROREP = None,
@@ -173,20 +177,21 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RRDOM = None,
     RREDMEUB = None,
     RREDREP = None,
-    RREPA = None,
+    RREPA = u'donapd',
     RREPMEU = None,
     RREPNPRO = None,
     RRESIMEUB = None,
     RRESINEUV = None,
     RRESIVIEU = None,
-    RRESTIMO = None,
-    RRIRENOV = None,
+    RRESTIMO = u'resimm',
+    RRETU = u'ecpess',
+    RRIRENOV = u'mohist',
     RRPRESCOMP = None,
-    RSOCREPR = None,
+    RSOCREPR = u'repsoc',
     RSOUFIP = None,
-    RSURV = None,
+    RSURV = u'rsceha',
     RTELEIR = None,
-    RTITPRISE = None,
+    RTITPRISE = u'cappme',
     RTOUHOTR = None,
     RTOUR = None,
     RTOUREPA = None,
@@ -196,31 +201,35 @@ openfisca_variable_name_by_tax_calculator_code = dict(
     RTOURREP = None,
     RTOURTRA = None,
     TEFF = None,
-    TOTPAC = None,  # Nombre de personnes à charge dans le foyer fiscal
+    TOTPAC = u'nb_pac',
     TXMARJ = None,
     TXMOYIMP = None,
     )
 
 
 general_variable_name_by_tax_calculator_code = {  
-    'AVFISCOPTER': u'?',#TODO (f8tf)
+    'AVFISCOPTER': u'?',
     'BCSG': u'Base CSG',
     'BPRS': u'Base prélèvement social et contributions annexes',
     'BRDS': u'Base CRDS',
-    'CIADCRE': u'?',#TODO (f7dg)
-    'CICA': u'?',#TODO (f4tq)
-    'CICORSE': u'?',#TODO (f8to)
-    'CIDEPENV': u'?',#TODO (f7sz)
-    'CIDEVDUR': u'?',#TODO (f7wf)
-    'CIGARD': u'?',#TODO (f7ga)
+    'CIADCRE': u'Crédit d\'impôt pour dépenses au titre de services à la personne à domicile',
+    'CICORSE': u'Crédit d\'impôt pour investissements en Corse',
+    'CICORSEAVIS': u'Crédit d\'impôt pour investissements en Corse',
+    'CICULTUR': u'Réduction/Crédit (?) d\'impôt pour acquisitions de biens culturels',
+    'CIDEPENV': u'Crédit d\'impôt sur dépenses en faveur de la qualité environnementale des logements en location',
+    'CIDEVDUR': u'Crédit d\'impôt sur dépenses en faveur de la qualité environnementale du logement principal',
+    'CIFORET': u'Crédit d\'impôt pour investissements forestiers',
+    'CIGARD': u'Crédit d\'impôt pour frais de garde d\'enfants',
     'CIGE': u'Crédit aides aux personnes',
-    'CIHABPRIN': u'?',#TODO (f7vy)
-    'CIMOBIL': u'?',#TODO (f1ar)
+    'CIHABPRIN': u'Crédit d\'impôt au titre des intérêts d\'emprunt pour acquisition de l\'habitation principale',
+    'CILOYIMP': u'Crédit d\'impôt au titre des primes d\'assurances pour loyers impayés',
+    'CIMOBIL': u'Rentes de source étrangère ouvrant droit à un crédit impôt égal à l\'impôt français',
     'CIPERT': u'?',#TODO (f3vv)
-    'CIPRETUD': u'?',#TODO (f7uk)
-    'CIRCM': u'?',#TODO (f2dc)
+    'CIPRETUD': u'Crédit d\'impôt au titre des intérêts sur prêts étudiants',
+    'CIRCM': u'?',
     'CIRELANCE': u'Crédit d\'impôt exceptionnel sur les revenus 2008',
-    'CITEC': u'?',#TODO (f7wr)
+    'CITEC': u'Crédit d\'impôt sur dépenses de prévention des risques technologiques dans les locations (ou aide à la personne)',
+    'DIMMENAG': u'Réduction d\'impôt sous condition de revenus 2016',
     'I2DH': u'Prélèvement libératoire de 7,5%',
     'IAVF2': u'?',#TODO (f8th)
     'IAVIM': u'Impôt avant imputations',
@@ -231,7 +240,7 @@ general_variable_name_by_tax_calculator_code = {
     'IPROP': u'Impôt proportionnel',
     'IREST': u'Montant net à restituer',
     'IRESTIR': u'Impôt sur le revenu net',
-    'IRETS' : u'?',#TODO
+    'IRETS' : u'?',
     'ITRED': u'Total des réductions d\'impôt',
     'NAPCRP': u'Montant net des prélèvements sociaux (sur revenu du patrimoine et revenus d\'activité et de remplacement',
     'NAPCS': u'Montant net CSG',
@@ -242,138 +251,144 @@ general_variable_name_by_tax_calculator_code = {
     'PERPPLAFTC': u'?',#TODO (f2ch, f2dh, maries_ou_pacses)
     'PERPPLAFTV': u'Plafond de déduction pour les revenus 2014 au titre de l\'épargne retraite, pour déclarant 1',
     'PPETOT': u'Prime pour l\'emploi',
-    'RAA': u'?',#TODO (7ud)
-    'RAH': u'?',#TODO (7ce)
-    'RAIDE': u'?',#TODO (7df)
+    'RAA': u'?',
+    'RAH': u'?',
+    'RAIDE': u'Réduction d\'impôt pour dépenses au titre de services à la personne à domicile',
     'RCEL': u'?',#TODO (scellier)
     'RCEL2012': u'?',#TODO (7ja)
     'RCELCOM': u'?',#TODO (7np)
-    'RCELFABC': u'?',#TODO (7fa)
-    'RCELFD': u'?',#TODO (f7fd)
-    'RCELHJK': u'?',#TODO (scellier)
-    'RCELHL': u'?',#TODO (7hl)
-    'RCELHM': u'?',#TODO (7hm)
-    'RCELHNO': u'?',#TODO (7hn)
-    'RCELHR': u'?',#TODO (7hr)
-    'RCELJBGL': u'?',#TODO (7jb)
-    'RCELJOQR': u'?',#TODO (7jo)
-    'RCELJP': u'?',#TODO (7jp)
-    'RCELLIER': u'?',#TODO (7hk)
-    'RCELNBGL': u'?',#TODO (7nb)
-    'RCELNQ': u'?',#TODO (7nq)
-    'RCELREPGJ': u'?',#TODO (7gj)
-    'RCELREPGK': u'?',#TODO (7gk)
-    'RCELREPGL': u'?',#TODO (7gl)
-    'RCELREPGP': u'?',#TODO (7gp)
-    'RCELREPGS': u'?',#TODO (7gs)
-    'RCELREPGT': u'?',#TODO (7gt)
-    'RCELREPGU': u'?',#TODO (7gu)
-    'RCELREPGV': u'?',#TODO
-    'RCELREPGV': u'?',#TODO (7gv)
-    'RCELREPGW': u'?',#TODO (f7gw)
-    'RCELREPGX': u'?',#TODO (f7gx)
-    'RCELREPHA': u'?',#TODO (7ha)
-    'RCELREPHB': u'?',#TODO (7hb)
-    'RCELREPHD': u'?',#TODO (7hd)
-    'RCELREPHE': u'?',#TODO (7he)
-    'RCELREPHF': u'?',#TODO (7hf)
-    'RCELREPHG': u'?',#TODO (7hg)
-    'RCELREPHH': u'?',#TODO (7hh)
-    'RCELREPHR': u'?',#TODO (scellier)
-    'RCELREPHS': u'?',#TODO (7hs)
-    'RCELREPHT': u'?',#TODO (7ht)
-    'RCELREPHU': u'?',#TODO (7hu)
-    'RCELREPHV': u'?',#TODO (7hv)
-    'RCELREPHW': u'?',#TODO (7hw)
-    'RCELREPHX': u'?',#TODO (7hx)
-    'RCELREPHZ': u'?',#TODO (7hz)
-    'RCELRRED09': u'?',#TODO (7la)
-    'RCELRREDLA': u'?',#TODO (scellier)
-    'RCELRREDLB': u'?',#TODO (f7lb)
-    'RCELRREDLC': u'?',#TODO (f7lc)
-    'RCELRREDLD': u'?',#TODO (7ld)
-    'RCELRREDLE': u'?',#TODO (7le)
-    'RCELRREDLF': u'?',#TODO (7lf)
-    'RCELRREDLM': u'?',#TODO (7lm)
-    'RCELRREDLS': u'?',#TODO (7ls)
-    'RCELRREDLZ': u'?',#TODO (f7lz)
-    'RCELRREDMG': u'?',#TODO (7mg)
-    'RCINE': u'?',#TODO (7gn)
-    'RCODELOP': u'?',#TODO (7uh)
-    'RCODJT': u'?',#TODO (7jt)
-    'RCODJU': u'?',#TODO (7jt)
-    'RCODJV': u'?',#TODO (7jv)
-    'RCODJW': u'?',#TODO (7jw)
-    'RCODJX': u'?',#TODO (7jx)
-    'RCOLENT': u'?',#TODO (7ls)
-    'RCONS': u'?',#TODO (7uh)
-    'RCOTFOR': u'?',#TODO (7ul)
-    'RDIFAGRI': u'?',#TODO (7um)
-    'RDONS': u'?',#TODO (7uf)
-    'RDUFLOGIH': u'?',#TODO (7gh)
-    'REI': u'?',#TODO (f8tf)
+    'RCELFABC': u'Réduction d\'impôt Scellier : cases 7FA, 7FB, 7FC',
+    'RCELFD': u'Réduction d\'impôt Scellier : case 7FD',
+    'RCELHJK': u'Réduction d\'impôt Scellier : case 7HJ, 7HK',
+    'RCELHL': u'Réduction d\'impôt Scellier : case 7HL',
+    'RCELHM': u'Réduction d\'impôt Scellier : case 7HM',
+    'RCELHNO': u'Réduction d\'impôt Scellier : case 7HN, 7HO',
+    'RCELHR': u'Réduction d\'impôt Scellier : case 7HR',
+    'RCELHS': u'Réduction d\'impôt Scellier : case 7HS',
+    'RCELJBGL': u'Réduction d\'impôt Scellier : case ?',
+    'RCELJOQR': u'Réduction d\'impôt Scellier : case ?',
+    'RCELJP': u'Réduction d\'impôt Scellier : case ?',
+    'RCELLIER': u'Réduction d\'impôt Scellier : case ?',
+    'RCELNBGL': u'Réduction d\'impôt Scellier : case ?',
+    'RCELNQ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGJ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGK': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGL': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGP': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGS': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGT': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGU': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGV': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGV': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGW': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPGX': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHA': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHB': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHD': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHE': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHF': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHG': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHH': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHR': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHS': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHT': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHU': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHV': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHW': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHX': u'Réduction d\'impôt Scellier : case ?',
+    'RCELREPHZ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRRED09': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLA': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLB': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLC': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLD': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLE': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLF': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLM': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLS': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDLZ': u'Réduction d\'impôt Scellier : case ?',
+    'RCELRREDMG': u'Réduction d\'impôt Scellier : case ?',
+    'RCINE': u'Réduction d\'impôt pour souscription au capital d\'une SOFICA',
+    'RCODELOP': u'?',
+    'RCODJT': u'Réduction d\'impôt Censi-Bouvard : case 7JT',
+    'RCODJTJU': u'Réduction d\'impôt Censi-Bouvard : case 7JT, 7JU',
+    'RCODJU': u'Réduction d\'impôt Censi-Bouvard : case 7JU',
+    'RCODJV': u'Réduction d\'impôt Censi-Bouvard : case ?',
+    'RCODJW': u'Réduction d\'impôt Censi-Bouvard : case ?',
+    'RCODJX': u'Réduction d\'impôt Censi-Bouvard : case ?',
+    'RCOLENT': u'Réduction d\'impôt pour investissements Outre-Mer dans le cadre d\'une entreprise',
+    'RCOMP': u'Réduction d\'impôt pour frais de comptabilité et d\'adhésion à un CGA',
+    'RCOTFOR': u'Réduction d\'impôt pour investissements forestiers',
+    'RDIFAGRI': u'Réduction d\'impôt pour paiement différé accordé aux agriculteurs',
+    'RDONS': u'Réduction d\'impôt pour dons à des oeuvres d\'intérêt général',
+    'RDUFLOGIH': u'Réduction d\'impôt Duflot : cases 7GH, 7GI',
+    'RDUFREPFI': u'Réduction d\'impôt Duflot : case 7FI',
+    'RDUFREPFK': u'Réduction d\'impôt Duflot : case 7FK',
+    'RDUFREPFR': u'Réduction d\'impôt Duflot : case 7FR',
+    'REI': u'Reprise de réductions ou de crédits d\'impôt : cases 8TF, 8TP',
     'REVKIRE': u'Revenu fiscal de référence',
-    'RFCPI': u'?',#TODO (7gq)
-    'RFIPC': u'?',#TODO (7fm)
-    'RFOR': u'?',#TODO (f7up)
-    'RFORET': u'?',#TODO (f7uc)
-    'RHEBE': u'?',#TODO (7ce)
+    'RFCPI': u'?',
+    'RFIPC': u'Réduction d\'impôt pour souscription au capital de FCPI en Corse',
+    'RFOR': u'Réduction d\'impôt pour investissements forestiers (jusque 2013)',
+    'RFORET': u'Réduction d\'impôt pour cotisations pour la défense des forêts contre l\'incendie',
+    'RHEBE': u'Réduction d\'impôt pour dépenses d\'acceuil dans un établissement pour personnes dépendantes',
     'RIDOMENT': u'?',#TODO (7ur)
-    'RIDOMPROE1': u'?',#TODO (f7sz)
+    'RIDOMPROE1': u'?',
     'RIDOMPROE2': u'?',#TODO (f7qz)
     'RIDOMPROE3': u'?',#TODO (f7qz)
     'RIDOMPROE4': u'?',#TODO (f7oz)
     'RIDOMPROE5': u'?',#TODO (f7oz)
-    'RILMIA': u'?',#TODO (7ia)
-    'RILMIB': u'?',#TODO (7ib)
-    'RILMIC': u'?',#TODO (7ic)
-    'RILMIH': u'?',#TODO (7ih)
-    'RILMIX': u'?',#TODO (7ix)
-    'RILMIZ': u'?',#TODO (7iz)
-    'RILMJI': u'?',#TODO (7ji)
-    'RILMJS': u'?',#TODO (7ji)
-    'RILMJV': u'?',#TODO
-    'RILMJW': u'?',#TODO
-    'RILMJX': u'?',#TODO
-    'RINNO': u'?',#TODO (7gq)
-    'RINVDOMTOMLG': u'?',#TODO (f7ui)
-    'RINVRED': u'?',#TODO (7it)
-    'RLOCIDEFG': u'?',#TODO (7id)
-    'RLOGDOM': u'?',#TODO (f7qd)
-    'RMEUBLE': u'?',#TODO (7ik)
-    'RNI': u'?',#TODO
+    'RILMIA': u'Réduction d\'impôt Censi-Bouvard : case 7IA',
+    'RILMIB': u'Réduction d\'impôt Censi-Bouvard : case 7IB',
+    'RILMIC': u'Réduction d\'impôt Censi-Bouvard : case 7IC',
+    'RILMIH': u'Réduction d\'impôt Censi-Bouvard : case 7IH',
+    'RILMIX': u'Réduction d\'impôt Censi-Bouvard : case 7IX',
+    'RILMIZ': u'Réduction d\'impôt Censi-Bouvard : case 7IZ',
+    'RILMJI': u'Réduction d\'impôt Censi-Bouvard : case 7JI',
+    'RILMJS': u'Réduction d\'impôt Censi-Bouvard : case 7JS',
+    'RILMJV': u'Réduction d\'impôt Censi-Bouvard : case 7JV',
+    'RILMJW': u'Réduction d\'impôt Censi-Bouvard : case 7JW',
+    'RILMJX': u'Réduction d\'impôt Censi-Bouvard : case 7JX',
+    'RINNO': u'Réduction d\'impôt pour souscription au capital de FCPI',
+    'RINVDOMTOMLG': u'?',
+    'RINVRED': u'Réduction d\'impôt Censi-Bouvard : case 7IT',
+    'RLOCIDEFG': u'Réduction d\'impôt Censi-Bouvard : cases 7ID, 7IE, 7IF, 7IG',
+    'RLOGDOM': u'Réduction d\'impôt pour investissements Outre-Mer dans le secteur du logement',
+    'RMEUBLE': u'Réduction d\'impôt Censi-Bouvard : case 7IK',
+    'RNI': u'?',
     'RNICOL': u'Revenu net imposable ou déficit à reporter',
-    'RNOUV': u'?',#TODO (cappme)
-    'RPATNAT': u'?',#TODO (7ka)
-    'RPATNATOT': u'?',#TODO (7ka)
-    'RPRESCOMPREP': u'?',#TODO (7wp)
+    'RNOUV': u'Réduction d\'impôt pour souscription au capital de PME',
+    'RPATNAT': u'Réduction d\'impôt pour dépenses de protection du patrimoine naturel',
+    'RPATNATOT': u'Réduction d\'impôt pour dépenses de protection du patrimoine naturel',
+    'RPRESCOMPREP': u'Prestation compensatoire : report de l\'année précédente : case 7wp',
     'RPROREP': u'?',#TODO (7is)
     'RRBG': u'Revenu brut global ou déficit',
     'RRDOM': u'?',#TODO (7ub)
     'RREDMEUB': u'?',#TODO (7is)
     'RREDREP': u'?',#TODO (7iu)
-    'RREPA': u'?',#TODO (7ud)
-    'RREPMEU': u'?',#TODO (7ip)
-    'RREPNPRO': u'?',#TODO (7ir)
+    'RREPA': u'Réduction d\'impôt pour dons à des organismes de personnes en difficultés',
+    'RREPMEU': u'Réduction d\'impôt Censi-Bouvard : case 7IP',
+    'RREPNPRO': u'Réduction d\'impôt Censi-Bouvard : case 7IQ',
     'RRESIMEUB': u'?',#TODO (7io)
     'RRESINEUV': u'?',#TODO (7ij)
-    'RRESIVIEU': u'?',#TODO (7im)
-    'RRESTIMO': u'?',#TODO (7rd)
-    'RRIRENOV': u'?',#TODO (7nz)
-    'RRPRESCOMP': u'?',#TODO (7wp)
-    'RSOCREPR': u'?',#TODO (7fh)
-    'RSOUFIP':  u'?',#TODO (7fq)
-    'RSURV': u'?',#TODO (7gz)
-    'RTELEIR': u'?',#TODO (7ul)
-    'RTITPRISE': u'?',#TODO (7cu)
-    'RTOUHOTR': u'?', #TODO (7xk)
-    'RTOUR': u'?',#TODO (f7xd)
-    'RTOUREPA': u'?', #TODO (7xj)
-    'RTOURES': u'?',#TODO (f7xc)
-    'RTOURHOT': u'?',#TODO (f7xc)
-    'RTOURNEUF': u'?', #TODO (f7xc)
-    'RTOURREP': u'?', #TODO (7xi)
-    'RTOURTRA': u'?',#TODO (f7xc)
+    'RRESIVIEU': u'?',#TODO (7im, 7iw)
+    'RRESTIMO': u'Réduction d\'impôt Malraux pour travaux de restauration immobilière',
+    'RRETU': u'Réduction d\'impôt pour enfants à charge poursuivant leurs études',
+    'RRIRENOV': u'Réduction d\'impôt pour travaux de conservation ou restauration de monuments historiques',
+    'RRPRESCOMP': u'Prestation compensatoire',
+    'RSOCREPR': u'Réduction d\'impôt au titre des intérêts d\'emprunt de reprise d\'une société',
+    'RSOUFIP': u'Réduction d\'impôt pour souscription au capital de FIP',
+    'RSURV': u'Réduction d\'impôt sur primes des contrats de rente-survie et épargne handicap',
+    'RTELEIR': u'?',
+    'RTITPRISE': u'Réduction d\'impôt pour souscription au capital de PME',
+    'RTOUHOTR': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : résidence hôtelière',
+    'RTOUR': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOUREPA': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURES': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURHOT': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURNEUF': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
+    'RTOURREP': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : reports (case 7XF à 7XN)',
+    'RTOURTRA': u'Réduction d\'impôt pour investissements locatifs dans le secteur touristique : ',
     'TEFF': u'?',#TODO (ebnc_impo)
     'TOTPAC': u'Nombre de personnes à charge',
     'TXMARJ': u'Taux marginal d\'imposition',
@@ -383,7 +398,7 @@ general_variable_name_by_tax_calculator_code = {
 household_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
     # TODO : fix following errors
     # 'f2ab', 'f2bg', CREDIT D'IMPOT (2AB) > 80 EUROS SANS REVENU CORRESPONDANT
-    # 'f2ck', CREDIT D'IMPOT 2CK > 80 E SANS REVENU CORRESPONDANT</UL>
+    # 'f2ck', CREDIT D'IMPOT 2CK > 80 E SANS REVENU CORRESPONDANT</UL> => mettre 2DC, 2TS ou 2TR
     # 'f7is', 'f7iu', 'f7ix', 'f7iy',
     # 'f3ve', 'f7fl', MONTANT LIGNE 3VE POUR UN CONTRIBUABLE NON DOMICILIE DANS UN DOM</UL>
     # 'f4bf', MONTANT PORTE LIGNE 4BF SANS REVENU OU DEFICIT FONCIER CORRESPONDANT
@@ -412,7 +427,6 @@ household_income_variables_to_test = [ # NB: taken from input variables of FELIN
     # prestation_compensatoire : 'f7wm', LE MONTANT 7WM EST INFERIEUR AU MONTANT 7WN
     # prestation_compensatoire : 'f7wn', 'f7wo', PRESENCE D UN MONTANT LIGNE 7WN SANS MONTANT 7WO OU RECIPROQUEMENT
     # reduc invfor : 'f7ut', CASE 7 UT COCHEE SANS PRISE EN CHARGE MONTANT LIGNE 7 UP
-    # reduc_malraux 'f7nx', 'f7ny', to test this => f7ny must be < f7nx
     'f1ar', 'f1br', 'f1cr', 'f1dr', 'f1er', 'f1aw', 'f1bw', 'f1cw', 'f1dw',
     'f2aa', 'f2al', 'f2am', 'f2an', 'f2aq', 'f2ar', 'f2dm',
     'f2ch', 'f2cg', 'f2dc', 'f2ts', 'f2ca', 'f2fu', 'f2go', 'f2gr', 'f2da', 'f2dh', 'f2ee', 'f2tr',
@@ -433,9 +447,8 @@ household_income_variables_to_test = [ # NB: taken from input variables of FELIN
 individual_income_variables_to_test = [ # NB: taken from input variables of FELIN-ERFS Survey Scenario (TAXIPP) 2014
     # 'f1tv', 'f1tw', 'f1tx',  => individual incomes but not with this name.. TO CHECK
     # 'revimpres', "REVENUS A IMPOSER AUX CONTRIBUTIONS SOCIALES SANS REVENU CORRESPONDANT"
-    #'f6ev', 'f6rs', 'f6ss', 'f7dg', 'f7dl', 'f7dq', 
-    #'ppe_tp_ns',  # TODO , update OpenFisca-france def of ppe_tp_ns (wrong stop_date) # WARNING : DGFiP calculator does not like this one
-    #'ppe_tp_sa', # WARNING : DGFiP calculator does not like this one
+    #'f6ev', 'f6rs', 'f6ss', 
+    #'ppe_tp_ns', # WARNING : DGFiP calculator does not like this one
     'aacc_defn',
     'aacc_defs',
     'aacc_exon',
@@ -456,7 +469,7 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'abnc_impo', 
     'abnc_proc', 
     'abnc_pvce', 
-    'alnp_defs',  # TODO , update OpenFisca-france def of alnp_defs (wrong stop_date)
+    'alnp_defs',
     'alnp_imps', 
     'arag_defi', 
     'arag_exon', 
@@ -466,14 +479,14 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'chomage_imposable',
     'cncn_aimp', 
     'cncn_bene', 
-    'cncn_defi',  # TODO, check (f5nr)
+    'cncn_defi',
     'cncn_exon', 
     'cncn_info', 
     'cncn_jcre', 
     'cncn_pvce', 
-    'ebic_imps',  # TODO , update OpenFisca-france def of ebic_imps (wrong stop_date)
-    'ebic_impv',  # TODO , update OpenFisca-france def of ebic_impv (wrong stop_date)
-    'ebnc_impo',  # TODO , update OpenFisca-france def of ebnc_impo (wrong stop_date)
+    'ebic_imps',
+    'ebic_impv',
+    'ebnc_impo',
     'f3vd', 'f3vl',
     'frag_exon', 
     'frag_fore', 
@@ -507,15 +520,15 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'nacc_defs', 
     'nacc_exon', 
     'nacc_impn', 
-    'nacc_meup',  #TODO , check
-    'nacc_pvce',  # TODO , update OpenFisca-france def of nacc_pvce (wrong stop_date)
+    'nacc_meup',
+    'nacc_pvce',
     'nbic_apch', 
     'nbic_defn', 
     'nbic_defs',
     'nbic_exon', 
     'nbic_impm', 
     'nbic_impn', 
-    'nbic_imps',  # TODO , wrong 2014 definition
+    'nbic_imps',
     'nbic_mvct', 
     'nbic_pvce', 
     'nbnc_defi', 
@@ -527,15 +540,467 @@ individual_income_variables_to_test = [ # NB: taken from input variables of FELI
     'nrag_defi', 
     'nrag_exon', 
     'nrag_impg', 
-    'nrag_pvce',  # WARNING , 5hk, 5ik, 5jk can be either (nrag_pvce) either (cncn_exon) depending on the year => TODO, handle this
+    'nrag_pvce',
     'pensions_alimentaires_percues',
     'pensions_invalidite',
-    'ppe_du_ns',  # TODO , update OpenFisca-france def of ppe_du_ns (wrong stop_date)
+    'ppe_du_ns',
     'ppe_du_sa',
     'pveximpres',  
     'retraite_imposable',
     ]
 
+start_date_by_name = {
+    u'aacc_gits': '2011-01-01',
+    u'aacc_imps': '2011-01-01',
+    u'abic_defm': '2009-01-01',
+    u'abic_impm': '2009-01-01',
+    u'abnc_proc': '2009-01-01',
+    u'alnp_defs': '2009-01-01',
+    u'alnp_imps': '2009-01-01',
+    u'arag_defi': '2007-01-01',
+    u'arag_exon': '2007-01-01',
+    u'arag_impg': '2007-01-01',
+    u'arag_pvce': '2007-01-01',
+    u'arag_sjag': '2011-01-01',
+    u'cbnc_assc': '2006-01-01',
+    u'cncn_adef': '2007-01-01',
+    u'cncn_aimp': '2007-01-01',
+    u'cncn_bene': '2006-01-01',
+    u'cncn_defi': '2006-01-01',
+    u'cncn_exon': '2008-01-01',
+    u'cncn_info': '2009-01-01',
+    u'cncn_jcre': '2006-01-01',
+    u'cncn_pvce': '2006-01-01',
+    u'ebic_imps': '2009-01-01',
+    u'ebic_impv': '2009-01-01',
+    u'ebnc_impo': '2009-01-01',
+    u'elig_creimp_exc_2008': '2008-01-01',
+    u'elig_creimp_jeunes': '2005-01-01',
+    u'f2aa': '2007-01-01',
+    u'f2al': '2008-01-01',
+    u'f2am': '2009-01-01',
+    u'f2an': '2010-01-01',
+    u'f2aq': '2011-01-01',
+    u'f2ar': '2012-01-01',
+    u'f2bh': '2007-01-01',
+    u'f2ck': '2013-01-01',
+    u'f2da': '2008-01-01',
+    u'f2dm': '2008-01-01',
+    u'f2gr': '2005-01-01',
+    u'f3sd': '2012-01-01',
+    u'f3sf': '2012-01-01',
+    u'f3si': '2012-01-01',
+    u'f3va': '2006-01-01',
+    u'f3vc': '2006-01-01',
+    u'f3vd': '2008-01-01',
+    u'f3vt': '2012-01-01',
+    u'f3vv': '2013-01-01',
+    u'f3vv_end_2010': '2010-01-01',
+    u'f3vz': '2011-01-01',
+    u'f5ga': '2010-01-01',
+    u'f5gb': '2010-01-01',
+    u'f5gc': '2010-01-01',
+    u'f5gd': '2010-01-01',
+    u'f5ge': '2010-01-01',
+    u'f5gf': '2010-01-01',
+    u'f5gg': '2010-01-01',
+    u'f5gh': '2010-01-01',
+    u'f5gi': '2010-01-01',
+    u'f5gj': '2010-01-01',
+    u'f5ht': '2007-01-01',
+    u'f5it': '2007-01-01',
+    u'f5jt': '2007-01-01',
+    u'f5kt': '2007-01-01',
+    u'f5lt': '2007-01-01',
+    u'f5mt': '2007-01-01',
+    u'f5qf': '2007-01-01',
+    u'f5qg': '2007-01-01',
+    u'f5qn': '2007-01-01',
+    u'f5qo': '2007-01-01',
+    u'f5qp': '2007-01-01',
+    u'f5qq': '2007-01-01',
+    u'f5rn': '2010-01-01',
+    u'f6aa': '2005-01-01',
+    u'f6cb': '2009-01-01',
+    u'f6cc': '2005-01-01',
+    u'f6da': '2005-01-01',
+    u'f6eh': '2005-01-01',
+    u'f6el': '2006-01-01',
+    u'f6em': '2006-01-01',
+    u'f6gu': '2006-01-01',
+    u'f6hj': '2010-01-01',
+    u'f6hk': '2011-01-01',
+    u'f6hl': '2012-01-01',
+    u'f6hm': '2013-01-01',
+    u'f7ac': '2013-01-01',
+    u'f7cc': '2013-01-01',
+    u'f7cq': '2011-01-01',
+    u'f7db': '2007-01-01',
+    u'f7dq': '2009-01-01',
+    u'f7fa': '2013-01-01',
+    u'f7fb': '2013-01-01',
+    u'f7fc': '2013-01-01',
+    u'f7fd': '2013-01-01',
+    u'f7fl': '2011-01-01',
+    u'f7fm': '2007-01-01',
+    u'f7fn': '2006-01-01',
+    u'f7gh': '2013-01-01',
+    u'f7gi': '2013-01-01',
+    u'f7gj': '2013-01-01',
+    u'f7gk': '2013-01-01',
+    u'f7gl': '2013-01-01',
+    u'f7gn': '2006-01-01',
+    u'f7gp': '2013-01-01',
+    u'f7gs': '2013-01-01',
+    u'f7gt': '2013-01-01',
+    u'f7gu': '2013-01-01',
+    u'f7gv': '2013-01-01',
+    u'f7gw': '2013-01-01',
+    u'f7gx': '2013-01-01',
+    u'f7gy': '2006-01-01',
+    u'f7ha': '2012-01-01',
+    u'f7hb': '2012-01-01',
+    u'f7hd': '2012-01-01',
+    u'f7he': '2012-01-01',
+    u'f7hf': '2012-01-01',
+    u'f7hg': '2012-01-01',
+    u'f7hh': '2012-01-01',
+    u'f7hj': '2009-01-01',
+    u'f7hk': '2009-01-01',
+    u'f7hl': '2010-01-01',
+    u'f7hm': '2010-01-01',
+    u'f7hn': '2010-01-01',
+    u'f7ho': '2010-01-01',
+    u'f7hr': '2010-01-01',
+    u'f7hs': '2010-01-01',
+    u'f7ht': '2011-01-01',
+    u'f7hu': '2011-01-01',
+    u'f7hv': '2011-01-01',
+    u'f7hw': '2011-01-01',
+    u'f7hx': '2011-01-01',
+    u'f7hy': '2009-01-01',
+    u'f7hz': '2011-01-01',
+    u'f7ia': '2012-01-01',
+    u'f7ib': '2012-01-01',
+    u'f7ic': '2012-01-01',
+    u'f7id': '2012-01-01',
+    u'f7ie': '2012-01-01',
+    u'f7if': '2012-01-01',
+    u'f7ig': '2012-01-01',
+    u'f7ih': '2012-01-01',
+    u'f7ij': '2009-01-01',
+    u'f7ik': '2010-01-01',
+    u'f7il': '2010-01-01',
+    u'f7im': '2010-01-01',
+    u'f7in': '2011-01-01',
+    u'f7io': '2011-01-01',
+    u'f7ip': '2011-01-01',
+    u'f7iq': '2011-01-01',
+    u'f7ir': '2011-01-01',
+    u'f7is': '2010-01-01',
+    u'f7it': '2011-01-01',
+    u'f7iu': '2011-01-01',
+    u'f7iv': '2011-01-01',
+    u'f7iw': '2011-01-01',
+    u'f7ix': '2012-01-01',
+    u'f7iy': '2013-01-01',
+    u'f7iz': '2012-01-01',
+    u'f7ja': '2012-01-01',
+    u'f7jb': '2012-01-01',
+    u'f7jc': '2013-01-01',
+    u'f7jd': '2012-01-01',
+    u'f7je': '2012-01-01',
+    u'f7jf': '2012-01-01',
+    u'f7jg': '2012-01-01',
+    u'f7jh': '2012-01-01',
+    u'f7ji': '2013-01-01',
+    u'f7jj': '2012-01-01',
+    u'f7jk': '2012-01-01',
+    u'f7jl': '2012-01-01',
+    u'f7jm': '2012-01-01',
+    u'f7jn': '2012-01-01',
+    u'f7jo': '2012-01-01',
+    u'f7jp': '2012-01-01',
+    u'f7jq': '2012-01-01',
+    u'f7jr': '2012-01-01',
+    u'f7js': '2013-01-01',
+    u'f7jt': '2013-01-01',
+    u'f7ju': '2013-01-01',
+    u'f7jv': '2013-01-01',
+    u'f7jw': '2013-01-01',
+    u'f7jx': '2013-01-01',
+    u'f7jy': '2013-01-01',
+    u'f7ka': '2010-01-01',
+    u'f7kb': '2011-01-01',
+    u'f7kc': '2012-01-01',
+    u'f7kd': '2013-01-01',
+    u'f7kt': '2011-01-01',
+    u'f7ku': '2011-01-01',
+    u'f7ky': '2009-01-01',
+    u'f7la': '2010-01-01',
+    u'f7lb': '2011-01-01',
+    u'f7lc': '2011-01-01',
+    u'f7ld': '2012-01-01',
+    u'f7le': '2012-01-01',
+    u'f7lf': '2012-01-01',
+    u'f7lg': '2010-01-01',
+    u'f7li': '2011-01-01',
+    u'f7lm': '2013-01-01',
+    u'f7ls': '2013-01-01',
+    u'f7ly': '2010-01-01',
+    u'f7lz': '2013-01-01',
+    u'f7ma': '2010-01-01',
+    u'f7mb': '2011-01-01',
+    u'f7mc': '2011-01-01',
+    u'f7mg': '2013-01-01',
+    u'f7mm': '2010-01-01',
+    u'f7mn': '2011-01-01',
+    u'f7my': '2010-01-01',
+    u'f7na': '2011-01-01',
+    u'f7nb': '2011-01-01',
+    u'f7nc': '2011-01-01',
+    u'f7nd': '2011-01-01',
+    u'f7ne': '2011-01-01',
+    u'f7nf': '2011-01-01',
+    u'f7ng': '2011-01-01',
+    u'f7nh': '2011-01-01',
+    u'f7ni': '2011-01-01',
+    u'f7nj': '2011-01-01',
+    u'f7nk': '2011-01-01',
+    u'f7nl': '2011-01-01',
+    u'f7nm': '2011-01-01',
+    u'f7nn': '2011-01-01',
+    u'f7no': '2011-01-01',
+    u'f7np': '2011-01-01',
+    u'f7nq': '2011-01-01',
+    u'f7nr': '2011-01-01',
+    u'f7ns': '2011-01-01',
+    u'f7nt': '2011-01-01',
+    u'f7nu': '2012-01-01',
+    u'f7nv': '2012-01-01',
+    u'f7nw': '2012-01-01',
+    u'f7nx': '2012-01-01',
+    u'f7ny': '2012-01-01',
+    u'f7nz': '2008-01-01',
+    u'f7oa': '2011-01-01',
+    u'f7ob': '2011-01-01',
+    u'f7oc': '2011-01-01',
+    u'f7oh': '2011-01-01',
+    u'f7oi': '2011-01-01',
+    u'f7oj': '2011-01-01',
+    u'f7ok': '2011-01-01',
+    u'f7ol': '2012-01-01',
+    u'f7om': '2012-01-01',
+    u'f7on': '2012-01-01',
+    u'f7oo': '2012-01-01',
+    u'f7op': '2012-01-01',
+    u'f7oq': '2012-01-01',
+    u'f7or': '2012-01-01',
+    u'f7os': '2012-01-01',
+    u'f7ot': '2012-01-01',
+    u'f7ou': '2012-01-01',
+    u'f7ov': '2012-01-01',
+    u'f7ow': '2012-01-01',
+    u'f7py': '2012-01-01',
+    u'f7ra': '2009-01-01',
+    u'f7rb': '2009-01-01',
+    u'f7rc': '2011-01-01',
+    u'f7rd': '2011-01-01',
+    u'f7re': '2012-01-01',
+    u'f7rf': '2012-01-01',
+    u'f7rg': '2012-01-01',
+    u'f7rh': '2012-01-01',
+    u'f7ri': '2012-01-01',
+    u'f7rj': '2012-01-01',
+    u'f7rk': '2012-01-01',
+    u'f7rl': '2012-01-01',
+    u'f7rm': '2012-01-01',
+    u'f7rn': '2012-01-01',
+    u'f7ro': '2012-01-01',
+    u'f7rp': '2012-01-01',
+    u'f7rq': '2012-01-01',
+    u'f7rr': '2012-01-01',
+    u'f7rs': '2012-01-01',
+    u'f7rt': '2012-01-01',
+    u'f7ru': '2012-01-01',
+    u'f7rv': '2012-01-01',
+    u'f7rw': '2012-01-01',
+    u'f7rx': '2012-01-01',
+    u'f7ry': '2012-01-01',
+    u'f7sb': '2009-01-01',
+    u'f7sc': '2009-01-01',
+    u'f7sd': '2009-01-01',
+    u'f7se': '2009-01-01',
+    u'f7sf': '2012-01-01',
+    u'f7sg': '2012-01-01',
+    u'f7sh': '2010-01-01',
+    u'f7si': '2012-01-01',
+    u'f7sj': '2012-01-01',
+    u'f7sk': '2012-01-01',
+    u'f7sl': '2012-01-01',
+    u'f7sm': '2012-01-01',
+    u'f7sn': '2012-01-01',
+    u'f7so': '2012-01-01',
+    u'f7sp': '2012-01-01',
+    u'f7sq': '2012-01-01',
+    u'f7sr': '2012-01-01',
+    u'f7ss': '2012-01-01',
+    u'f7st': '2012-01-01',
+    u'f7su': '2012-01-01',
+    u'f7sv': '2012-01-01',
+    u'f7sw': '2012-01-01',
+    u'f7sx': '2013-01-01',
+    u'f7sy': '2013-01-01',
+    u'f7sz': '2006-01-01',
+    u'f7td': '2008-01-01',
+    u'f7te': '2010-01-01',
+    u'f7tf': '2011-01-01',
+    u'f7tg': '2012-01-01',
+    u'f7th': '2013-01-01',
+    u'f7tt': '2012-01-01',
+    u'f7tu': '2012-01-01',
+    u'f7tv': '2012-01-01',
+    u'f7tw': '2012-01-01',
+    u'f7tx': '2012-01-01',
+    u'f7ty': '2012-01-01',
+    u'f7uh': '2007-01-01',
+    u'f7uh_2007': '2007-01-01',
+    u'f7ul': '2011-01-01',
+    u'f7up': '2009-01-01',
+    u'f7uq': '2009-01-01',
+    u'f7ut': '2009-01-01',
+    u'f7uu': '2010-01-01',
+    u'f7uv': '2011-01-01',
+    u'f7uw': '2012-01-01',
+    u'f7ux': '2013-01-01',
+    u'f7uy': '2013-01-01',
+    u'f7uz': '2013-01-01',
+    u'f7va': '2011-01-01',
+    u'f7vc': '2011-01-01',
+    u'f7ve': '2012-01-01',
+    u'f7vf': '2012-01-01',
+    u'f7vg': '2012-01-01',
+    u'f7vo': '2006-01-01',
+    u'f7vt': '2012-01-01',
+    u'f7vu': '2011-01-01',
+    u'f7vv': '2011-01-01',
+    u'f7vw': '2010-01-01',
+    u'f7vy': '2008-01-01',
+    u'f7vz': '2008-01-01',
+    u'f7wa': '2012-01-01',
+    u'f7wb': '2012-01-01',
+    u'f7wc': '2012-01-01',
+    u'f7we': '2009-01-01',
+    u'f7wg': '2012-01-01',
+    u'f7wh': '2013-01-01',
+    u'f7wk': '2009-01-01',
+    u'f7wl': '2010-01-01',
+    u'f7wq': '2010-01-01',
+    u'f7wr': '2013-01-01',
+    u'f7ws': '2012-01-01',
+    u'f7wt': '2012-01-01',
+    u'f7wu': '2012-01-01',
+    u'f7wv': '2012-01-01',
+    u'f7ww': '2012-01-01',
+    u'f7wx': '2012-01-01',
+    u'f7xa': '2011-01-01',
+    u'f7xb': '2011-01-01',
+    u'f7xd': '2009-01-01',
+    u'f7xe': '2009-01-01',
+    u'f7xi': '2010-01-01',
+    u'f7xj': '2010-01-01',
+    u'f7xk': '2010-01-01',
+    u'f7xn': '2012-01-01',
+    u'f7xo': '2008-01-01',
+    u'f7xp': '2011-01-01',
+    u'f7xq': '2011-01-01',
+    u'f7xr': '2011-01-01',
+    u'f7xu': '2006-01-01',
+    u'f7xv': '2012-01-01',
+    u'f7xw': '2007-01-01',
+    u'f7xx': '2012-01-01',
+    u'f7xy': '2008-01-01',
+    u'f7xz': '2012-01-01',
+    u'f8td': '2011-01-01',
+    u'f8td_2002_2005': '2002-01-01',
+    u'f8ts': '2012-01-01',
+    u'f8uw': '2013-01-01',
+    u'f8uy': '2009-01-01',
+    u'f8wc': '2012-01-01',
+    u'f8wd': '2006-01-01',
+    u'f8we': '2008-01-01',
+    u'f8wr': '2006-01-01',
+    u'f8ws': '2006-01-01',
+    u'f8wt': '2006-01-01',
+    u'f8wu': '2006-01-01',
+    u'f8wv': '2007-01-01',
+    u'f8wx': '2007-01-01',
+    u'fhod': '2013-01-01',
+    u'fhoe': '2013-01-01',
+    u'fhof': '2013-01-01',
+    u'fhog': '2013-01-01',
+    u'fhox': '2013-01-01',
+    u'fhoy': '2013-01-01',
+    u'fhoz': '2013-01-01',
+    u'fhra': '2013-01-01',
+    u'fhrb': '2013-01-01',
+    u'fhrc': '2013-01-01',
+    u'fhrd': '2013-01-01',
+    u'fhsa': '2013-01-01',
+    u'fhsb': '2013-01-01',
+    u'fhsc': '2013-01-01',
+    u'fhsd': '2013-01-01',
+    u'fhse': '2013-01-01',
+    u'fhsf': '2013-01-01',
+    u'fhsg': '2013-01-01',
+    u'fhsh': '2013-01-01',
+    u'fhsi': '2013-01-01',
+    u'fhsj': '2013-01-01',
+    u'fhsk': '2013-01-01',
+    u'fhsl': '2013-01-01',
+    u'fhsm': '2013-01-01',
+    u'fhsn': '2013-01-01',
+    u'fhso': '2013-01-01',
+    u'fhsp': '2013-01-01',
+    u'fhsq': '2013-01-01',
+    u'fhsr': '2013-01-01',
+    u'fhss': '2013-01-01',
+    u'fhst': '2013-01-01',
+    u'fhsu': '2013-01-01',
+    u'fhsv': '2013-01-01',
+    u'fhsw': '2013-01-01',
+    u'fhsx': '2013-01-01',
+    u'fhsy': '2013-01-01',
+    u'fhsz': '2013-01-01',
+    u'fhta': '2013-01-01',
+    u'fhtb': '2013-01-01',
+    u'fhtc': '2013-01-01',
+    u'fhtd': '2013-01-01',
+    u'frag_exon': '2007-01-01',
+    u'frag_fore': '2007-01-01',
+    u'frag_impo': '2007-01-01',
+    u'frag_pvce': '2007-01-01',
+    u'frag_pvct': '2007-01-01',
+    u'hsup': '2007-01-01',
+    u'mbnc_mvct': '2012-01-01',
+    u'mncn_exon': '2009-01-01',
+    u'nacc_defs': '2012-01-01',
+    u'nacc_meup': '2012-01-01',
+    u'nacc_pvce': '2009-01-01',
+    u'nbic_impm': '2009-01-01',
+    u'nbic_mvct': '2012-01-01',
+    u'nbic_pvce': '2008-01-01',
+    u'nbnc_proc': '2009-01-01',
+    u'nbnc_pvce': '2009-01-01',
+    u'nlnp_defs': '2009-01-01',
+    u'nrag_ajag': '2007-01-01',
+    u'nrag_defi': '2007-01-01',
+    u'nrag_exon': '2007-01-01',
+    u'nrag_impg': '2007-01-01',
+    u'pensions_invalidite': '2014-01-01',
+    u'pveximpres': '2006-01-01',
+    u'sal_pen_exo_etr': '2013-01-01'
+    }
 
 def call_tax_calculator(year, inputs):
     """

@@ -181,6 +181,7 @@ class f7vy(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements anciens (acquis entre le 06/05/2007 et le 30/09/2011) ou neufs (acquis entre le 06/05/2007 et le 31/12/2009): Première annuité"
 #    start_date = date(2008, 1, 1)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -210,6 +211,7 @@ class f7vw(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: première annuité"
 #    start_date = date(2010, 1, 1)
+    end = '2013-12-31'
     definition_period = YEAR
 
 
@@ -220,6 +222,7 @@ class f7vv(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2010 au 31/12/2010: annuités suivantes"
 #    start_date = date(2011, 1, 1)
+    end = '2015-12-31'
     definition_period = YEAR
 
   # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
@@ -231,6 +234,7 @@ class f7vu(Variable):
     entity = FoyerFiscal
     label = u"Intérêt des emprunts contractés pour l'acquisition ou la construction de l'habitation principale: logements neufs non-BBC acquis ou construits du 01/01/2011 au 30/09/2011: première annuité"
 #    start_date = date(2011, 1, 1)
+    end = '2014-12-31'
     definition_period = YEAR
 
   # TODO: variable non présente dans OF, à intégrer partout où c'est nécessaire
@@ -1066,7 +1070,7 @@ class f7wr(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques"
-#    start_date = date(2013, 1, 1)
+#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
@@ -2198,7 +2202,7 @@ class f7sz(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Dépenses en faveur de la qualité environnementale des logements donnés en location"
-#    start_date = date(2006, 1, 1)
+#    start_date = date(2006, 1, 1) # disparait en 2010-2011, en 2014 et en 2016
     definition_period = YEAR
 
 
@@ -3703,7 +3707,7 @@ class f7dy(Variable):
 
 
 class f7ey(Variable):
-    cerfa_field = u"7CY"
+    cerfa_field = u"7EY"
     value_type = int
     unit = 'currency'
     entity = FoyerFiscal
@@ -6898,7 +6902,6 @@ class f7sf(Variable):
     unit = 'currency'
     entity = FoyerFiscal
     label = u"Crédit de travaux en faveur d'aides aux personnes pour des logements en location (avant 2012 ) / Appareils de régulation du chauffage, matériaux de calorifugeage (après 2011)"
-#    start_date = date(2012, 1, 1)
     definition_period = YEAR
 
 
