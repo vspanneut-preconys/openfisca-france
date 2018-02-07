@@ -18,7 +18,7 @@ class reductions(Variable):
     label = u"reductions"
     definition_period = YEAR
 
-    def formula_2002_01_01(self, simulation, period):
+    def formula_2002_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2002
         '''
@@ -47,7 +47,7 @@ class reductions(Variable):
                 garext + intemp + invfor + invrev + prcomp + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2003_01_01(self, simulation, period):
+    def formula_2003_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2003 et 2004
         '''
@@ -78,7 +78,7 @@ class reductions(Variable):
                 garext + intemp + invfor + invrev + mecena + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2005_01_01(self, simulation, period):
+    def formula_2005_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2005
         '''
@@ -108,7 +108,7 @@ class reductions(Variable):
                 intcon + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2006_01_01(self, simulation, period):
+    def formula_2006_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2006
         '''
@@ -140,7 +140,7 @@ class reductions(Variable):
         ecpess + intagr + invfor + invlst + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2007_01_01(self, simulation, period):
+    def formula_2007_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2007
         '''
@@ -173,7 +173,7 @@ class reductions(Variable):
 
         return min_(ip_net, total_reductions)
 
-    def formula_2008_01_01(self, simulation, period):
+    def formula_2008_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2008
         '''
@@ -206,7 +206,7 @@ class reductions(Variable):
         ecpess + intagr + invfor + invlst + mohist + mecena + prcomp + repsoc + rsceha + saldom + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2009_01_01(self, simulation, period):
+    def formula_2009_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2009
         '''
@@ -247,7 +247,7 @@ class reductions(Variable):
         return min_(ip_net, total_reductions)
 
     # TODO: check (sees checked) and report in Niches.xls
-    def formula_2010_01_01(self, simulation, period):
+    def formula_2010_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2010
         '''
@@ -287,7 +287,7 @@ class reductions(Variable):
         saldom + scelli + sofica + sofipe + spfcpi)  # TODO: check (sees checked) and report in Niches.xls
         return min_(ip_net, total_reductions)
 
-    def formula_2011_01_01(self, simulation, period):
+    def formula_2011_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2011
         '''
@@ -327,7 +327,7 @@ class reductions(Variable):
         saldom + scelli + sofica + sofipe + spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2012_01_01(self, simulation, period):
+    def formula_2012_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2012
         '''
@@ -365,7 +365,7 @@ class reductions(Variable):
         saldom + scelli + sofica + spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2013_01_01(self, simulation, period):
+    def formula_2013_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2013
         '''
@@ -405,7 +405,7 @@ class reductions(Variable):
         spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2014_01_01(self, simulation, period):
+    def formula_2014_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2014
         '''
@@ -445,7 +445,7 @@ class reductions(Variable):
         spfcpi)
         return min_(ip_net, total_reductions)
 
-    def formula_2015_01_01(self, simulation, period):
+    def formula_2015_01_01(foyer_fiscal, period, parameters):
         '''
         Renvoie la somme des réductions d'impôt à intégrer pour l'année 2015 et aprés
         '''
