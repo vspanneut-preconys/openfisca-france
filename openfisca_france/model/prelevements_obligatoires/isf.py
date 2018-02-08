@@ -22,6 +22,13 @@ class b1ac(Variable):
     label = u"Valeur des autres immeubles avant abattement"
     definition_period = YEAR
 
+class b1co(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Autres biens meubles : contrats d'assurance-vie"
+    definition_period = YEAR
+
 
 ## non bâtis
 class b1bc(Variable):
@@ -289,6 +296,7 @@ class isf_actions_sal(Variable):  # # non présent en 2005##
     entity = FoyerFiscal
     label = u"isf_actions_sal"
     definition_period = YEAR
+    end = '2016-12-31'
 
     def formula_2006(foyer_fiscal, period, parameters):
         '''
@@ -305,6 +313,7 @@ class isf_droits_sociaux(Variable):
     entity = FoyerFiscal
     label = u"isf_droits_sociaux"
     definition_period = YEAR
+    end = '2016-12-31'
 
     def formula(foyer_fiscal, period, parameters):
         isf_actions_sal = foyer_fiscal('isf_actions_sal', period)
@@ -338,7 +347,12 @@ class ass_isf(Variable):
         forf_mob = (b1cg != 0) * b1cg + (b1cg == 0) * total * P.taux
         actif_brut = total + forf_mob
         return actif_brut - b2gh
-
+        
+    def formula_2017(foyer_fiscal, period, parameters):
+        # TODO: Gérer les trois option meubles meublants
+        isf_imm_bati = foyer_fiscal('isf_imm_bati', period)
+        isf_imm_non_bati = foyer_fiscal('isf_imm_non_bati', period)
+        return isf_imm_bati + isf_imm_non_bati
 
 # # calcul de l'impôt par application du barème ##
 
@@ -356,6 +370,12 @@ class isf_iai(Variable):
 
     # Cette formule a seulement été vérifiée jusqu'au 2015-12-31
     def formula_2011_01_01(foyer_fiscal, period, parameters):
+        ass_isf = foyer_fiscal('ass_isf', period)
+        bareme = parameters(period).taxation_capital.isf.bareme
+        ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
+        return bareme.calc(ass_isf)
+
+    def formula_2017(foyer_fiscal, period, parameters):
         ass_isf = foyer_fiscal('ass_isf', period)
         bareme = parameters(period).taxation_capital.isf.bareme
         ass_isf = (ass_isf >= bareme.rates[1]) * ass_isf
@@ -462,6 +482,14 @@ class isf_avant_plaf(Variable):
         borne_max = parameters(period).taxation_capital.isf.reduc_invest_don.max
 
         return max_(0, isf_avant_reduction - min_(isf_inv_pme + isf_org_int_gen, borne_max) - isf_reduc_pac)
+
+    def formula_2017(foyer_fiscal, period, parameters):
+        isf_avant_reduction = foyer_fiscal('isf_avant_reduction', period)
+        isf_org_int_gen = foyer_fiscal('isf_org_int_gen', period)
+        isf_reduc_pac = foyer_fiscal('isf_reduc_pac', period)
+        borne_max = parameters(period).taxation_capital.isf.reduc_invest_don.max
+
+        return max_(0, isf_avant_reduction - min_(isf_org_int_gen, borne_max) - isf_reduc_pac)
 
 
 # # calcul du plafonnement ##
