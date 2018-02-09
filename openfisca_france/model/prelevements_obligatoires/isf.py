@@ -62,6 +62,13 @@ class b1bk(Variable):
     label = u"Immeubles non bâtis : autres biens"
     definition_period = YEAR
 
+class placements_immobiliers(Variable):
+    value_type = int
+    unit = 'currency'
+    entity = FoyerFiscal
+    label = u"Placements et liquidités liés à l'immobilier"
+    definition_period = YEAR
+
 
 ## droits sociaux- valeurs mobilières-liquidités- autres meubles
 class b1cl(Variable):
@@ -352,7 +359,8 @@ class ass_isf(Variable):
         # TODO: Gérer les trois option meubles meublants
         isf_imm_bati = foyer_fiscal('isf_imm_bati', period)
         isf_imm_non_bati = foyer_fiscal('isf_imm_non_bati', period)
-        return isf_imm_bati + isf_imm_non_bati
+        placements_immobiliers = foyer_fiscal('placements_immobiliers', period)
+        return isf_imm_bati + isf_imm_non_bati + placements_immobiliers
 
 # # calcul de l'impôt par application du barème ##
 
